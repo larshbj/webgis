@@ -1,0 +1,46 @@
+{
+  "name": "webgis",
+  "version": "1.0.0",
+  "description": "gis in web-browser using geodjango, DRF and react",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^15.3.2",
+    "jquery": "^3.1.0",
+    "lodash": "^4.15.0",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.7",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.11.1",
+    "react": "^15.3.2",
+    "react-hot-loader": "^1.3.0",
+    "redux-devtools": "^3.3.1",
+    "webpack": "^1.13.3",
+    "webpack-bundle-tracker": "0.0.93",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/larshbj/webgis.git"
+  }
+  "keywords": [
+    "gis",
+    "django",
+    "react",
+    "postgis"
+  ],
+  "author": "larshbj",
+  "license": "ISC"
+}
