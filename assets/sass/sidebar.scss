@@ -1,0 +1,52 @@
+.sidebar {
+  //position:absolute;
+  top:0px;
+  float:left;
+  //width:300px;
+  width:13vw;
+  height:99vh;
+  z-index: 1;
+  background: #373a47;
+  border-right: 1vw solid #565C70;
+
+}
+.dropZone {
+  position:absolute;
+  width:12vw;
+  height:15vh;
+  bottom:10%;
+  left:2.5vh;
+  // background-color: transparent;
+  // font-color:white;
+}
+//
+// .dropZoneText {
+//   color: #c1c1c1;
+//   line-height:200px; //to vertically center text
+//   right: 50%;
+//   text-align: center;
+//   font-family: Calibri;
+//   font-size: 16px;
+// }
+
+/* React Filepicker Example CSS */
+
+body {
+    font-family: sans-serif;
+}
+
+.filepicker.dropzone {
+    background-color:rgba(255, 255, 255, 0.2);
+    border-radius:5px;
+    border: 0.2vw dotted grey;
+}
+
+.dz-default {
+  color:rgba(255,255,255,0.7);
+}
+
+
+.filepicker.dropzone .dz-preview {
+    background: none;
+    border-radius: 5px;
+}
