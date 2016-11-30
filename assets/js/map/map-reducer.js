@@ -15,7 +15,12 @@ export default function (previousState, action) {
         case 'UPLOAD_SUCCESSFUL':
             previousState.upload_status = "uploadedSuccessfully";
             return _.assign({}, previousState);
+        case 'NEW_GEOJSON_URL':
+            previousState.latestGeoJsonURL = action.value;
+            return _.assign({}, previousState);
+        case 'START_STOP_LOAD_MAP':
+            previousState.is_loading_to_map = previousState.is_loading_to_map === false ? true : false;
+            return _.assign({}, previousState);
     }
     return previousState;
 }
-

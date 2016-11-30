@@ -1,4 +1,5 @@
 import os
+import sys
 import zipfile
 import shutil
 from django.shortcuts import render
@@ -10,7 +11,7 @@ from django.contrib.gis import geos, gdal
 from django.contrib.gis.gdal import DataSource
 from django.conf import settings
 from django.contrib.gis.geos import MultiPoint, MultiLineString, MultiPolygon, GEOSGeometry
-from .models import WorldBorders, PolygonModel, PointModel, LineModel
+from .models import WorldBorders, GeometryModel, PolygonModel, PointModel, LineModel
 from .forms import UploadFileForm
 
 class MainPageView(TemplateView):
@@ -25,20 +26,22 @@ def worldborders_view(request):
     # return model_as_geojson
 
 def load_layers(request):
-    print '----------------------------'
-    models = [PointModel, LineModel, PolygonModel]
-    querysets = []
-    for model in models:
-        print '----------------------------'
-        queryset = model.objects.all();
-        if queryset:
-            querysets.append(queryset)
-    if not querysets:
-        return HttpResponse(status=204)
-    print '----------------------------'
-    print querysets
-
-    models_as_geojson = serialize('geojson', querysets)
+    # print '----------------------------'
+    # models = [PointModel, LineModel, PolygonModel]
+    # querysets = []
+    # for model in models:
+    #     print '----------------------------'
+    #     queryset = model.objects.all();
+    #     if queryset:
+    #         querysets.append(queryset)
+    # if not querysets:
+    #     return HttpResponse(status=204)
+    # print '----------------------------'
+    # print querysets
+    queryset = GeometryModel.objects.all()
+    if not queryset:
+	       return HttpResponse(status=204)
+    models_as_geojson = serialize('geojson', queryset)
     return HttpResponse(models_as_geojson, content_type='json')
 
 model_mapper = {
@@ -55,20 +58,24 @@ geometry_mapper = {
 
 
 def handle_uploaded_file(file):
-    # new_file = Polygon(file = f, name = f.name)
-    # new_file.save()
-    # handle_shapefile(f)
     path = settings.MEDIA_ROOT
     if zipfile.is_zipfile(file):
         zip_ref = zipfile.ZipFile(file, 'r')
         filename_array = zip_ref.namelist()
         for name in filename_array:
-            if name.startswith('__MACOSX/') or name.endswith('/') or name.endswith:
+            if name.startswith('__MACOSX/') or name.endswith('/'):
                 filename_array.remove(name)
         zip_ref.extractall(path=path, members=filename_array)
-        for filename in filename_array:
-            if filename.endswith('.shp') and not filename.startswith('__MACOSX/') and not filename.endswith('/'):
-                handle_shapefile(filename, path)
+        folder_to_delete = os.path.join(path, os.path.splitext(file.name)[0])
+        try:
+            for filename in filename_array:
+                if filename.endswith('.shp') and not filename.startswith('__MACOSX/') and not filename.endswith('/'):
+                    handle_shapefile(filename, path)
+            # shutil.rmtree(folder_to_delete)
+        except:
+            # shutil.rmtree(folder_to_delete)
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
 
 def handle_shapefile(filename, path):
     filepath = os.path.abspath(os.path.join(path, filename))
@@ -78,11 +85,11 @@ def handle_shapefile(filename, path):
     name = os.path.basename(os.path.splitext(filename)[0])
     model = model_mapper[geomtype]
     geometry = geometry_mapper[geomtype]
+    models_to_save = []
     for feature in layer:
-        # geom_geos = GEOSGeometry(feature.geom.wkt)
         geom_geos = geometry(feature.geom.geos)
-        new_file = model(name = name, geom=geom_geos)
-        new_file.save()
+        models_to_save.append(GeometryModel(name = name, geom=geom_geos, geom_type = geomtype))
+    GeometryModel.objects.bulk_create(models_to_save,100)
 
 
 def upload_file(request):

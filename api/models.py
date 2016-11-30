@@ -50,6 +50,13 @@ def __str__(self):
 def __unicode__(self):
     return self.name
 
+class GeometryModel(models.Model):
+    name = models.CharField(max_length=50)
+    geom = models.GeometryField()
+    geom_type = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+
 class PolygonModel(models.Model):
     name = models.CharField(max_length=50)
     geom = models.MultiPolygonField(srid=4326, blank=True, null=True)

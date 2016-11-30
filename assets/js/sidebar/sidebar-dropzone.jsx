@@ -31,7 +31,7 @@ export default class SideBarDropZone extends React.Component {
         // please consult http://www.dropzonejs.com/#configuration
         this.djsConfig = {
             autoProcessQueue: true,
-            acceptedFiles: ".shp, .zip, .shx, .prj, .dbf"
+            acceptedFiles: ".shp, .zip, .shx, .prj, .dbf, .cpg"
         };
 
         this.componentConfig = {
@@ -47,6 +47,9 @@ export default class SideBarDropZone extends React.Component {
 
     handleFileAdded(file) {
         console.log(file);
+        Store.dispatch({
+            type: "START_STOP_LOAD_MAP"
+        });
     }
 
     uploadedFileSuccessfully(file, response) {
@@ -76,7 +79,6 @@ export default class SideBarDropZone extends React.Component {
         //   }
         // });
         // emitter.emit('UPLOAD_COMPLETED');
-
     }
 
 

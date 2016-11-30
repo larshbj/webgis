@@ -49,6 +49,11 @@ module.exports = {
                 comments: false,
             },
         }),
+        new webpack.ProvidePlugin({
+          "$":"jquery",
+          "jQuery":"jquery",
+          "window.jQuery":"jquery"
+        })
     ],
     resolve: {
         modulesDirectories: ['node_modules'],

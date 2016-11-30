@@ -8,14 +8,15 @@
   float:right;
 }
 
-.button1 {
+.testButton {
+  position: absolute;
   top:50px;
   left:50px;
   width:100px;
   height:50px;
-  z-index: 100;
+  z-index: 10;
   background-color:black;
-  cursor: crosshair;
+  cursor: pointer;
 }
 
 .leaflet-container {

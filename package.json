@@ -16,6 +16,7 @@
     "react-dropzone": "^3.7.3",
     "react-dropzone-component": "^1.2.0",
     "react-redux": "^4.4.5",
+    "react-spin": "^0.6.2",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "spin": "0.0.1",
