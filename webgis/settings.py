@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'api',
-    'leaflet',
     'webpack_loader',
 ]
 
@@ -131,11 +130,4 @@ WEBPACK_LOADER = {
         'BUNDLE_DIR_NAME': 'assets/bundles/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
-}
-LEAFLET_CONFIG = {
-  'DEFAULT_CENTER': (63.41,10.40),
-  'DEFAULT_ZOOM': 6,
-  'MIN_ZOOM': 1,
-  'MAX_ZOOM': 20,
-  'TILES': 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 }

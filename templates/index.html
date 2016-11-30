@@ -1,28 +1,9 @@
 <html>
-{% load leaflet_tags %}
-{% load static %}
   <head>
-    <style media="screen">
-      #world {
-        width:84.2vw;
-        height:100%;
-        float:right;
-      }
-    </style>
-    {% leaflet_js %}
-    {% leaflet_css %}
-    <script src="{% static 'node_modules/leaflet-ajax/dist/leaflet.ajax.min.js' %}"></script>
-    <script src="{% static 'node_modules/spin.js/spin.min.js' %}"></script>
-    <script src="{% static 'node_modules/leaflet-spin/leaflet.spin.js' %}"></script>
   </head>
   <body>
     <script type="text/javascript">
-       function map_init_basic (map, options) {
-           var geojsonWorldBorderLayer = new L.GeoJSON.AJAX("{% url 'worldborders' %}");
-           geojsonWorldBorderLayer.addTo(map);
-       }
      </script>
-    {% leaflet_map "world" callback="window.map_init_basic" %}
     <div id="react-app"></div>
     <script src="http://localhost:3000/assets/bundles/app.bundle.js"></script>
   </body>

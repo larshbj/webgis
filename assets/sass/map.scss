@@ -1,11 +1,11 @@
 
-.map {
+.mapClass {
   top:0px;
-  height: 99vh;
+  height: 100%;
   //width:1572px;
-  width: 85.2vw;
+  width: 100%;
+  z-index: 1;
   float:right;
-  z-index: -1;
 }
 
 .button1 {
@@ -19,6 +19,8 @@
 }
 
 .leaflet-container {
+  right:0px;
+  top:0px;
   height: 99vh;
-  width: 84.2%;
+  width: 84.2vw;
 }

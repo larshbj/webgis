@@ -23,11 +23,3 @@ def run(verbose=True):
     lm = LayerMapping(WorldBorders, worldborder_shp, worldborders_mapping,
                         transform=False, encoding='iso-8859-1')
     lm.save(strict=True, verbose=verbose)
-
-# point_csv = os.path.abspath(os.path.join('data', 'points.csv'))
-# def point_load():
-#     with open(point_csv) as point_file:
-#         for line in point_file:
-#             name, lon, lat = line.split(',')
-#             point = "POINT(%s %s)" % (lat.strip(), lon.strip())
-#             Point.objects.create(name=name, geom=geos.fromstr(point))

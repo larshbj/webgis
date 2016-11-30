@@ -1,9 +1,5 @@
 from __future__ import unicode_literals
-
 from django.db import models
-
-# Create your models here.
-# This is an auto-generated Django model module created by ogrinspect.
 from django.contrib.gis.db import models
 
 class WorldBorders(models.Model):
@@ -54,17 +50,14 @@ def __str__(self):
 def __unicode__(self):
     return self.name
 
-class Polygon(models.Model):
-    file = models.FileField(upload_to='polygons/')
+class PolygonModel(models.Model):
     name = models.CharField(max_length=50)
     geom = models.MultiPolygonField(srid=4326, blank=True, null=True)
 
-class Point(models.Model):
-    file = models.FileField(upload_to='points/')
+class PointModel(models.Model):
     name = models.CharField(max_length=50)
     geom = models.MultiPointField(srid=4326, blank=True, null=True)
 
-class Line(models.Model):
-    file = models.FileField(upload_to='lines/')
+class LineModel(models.Model):
     name = models.CharField(max_length=50)
     geom = models.MultiLineStringField(srid=4326, blank=True, null=True)
