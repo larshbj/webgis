@@ -9,17 +9,24 @@ export default function (previousState, action) {
     }
 
     switch (action.type) {
-        case 'FILE_UPLOADING':
-            previousState.upload_status = "uploading";
-            return _.assign({}, previousState)
-        case 'UPLOAD_SUCCESSFUL':
-            previousState.upload_status = "uploadedSuccessfully";
+        case 'START_UPLOAD_TO_DB':
+            previousState.is_uploading = true;
             return _.assign({}, previousState);
-        case 'NEW_GEOJSON_URL':
-            previousState.latestGeoJsonURL = action.value;
+        case 'FINISHED_UPLOAD_TO_DB':
+            previousState.is_uploading = false;
             return _.assign({}, previousState);
-        case 'START_STOP_LOAD_MAP':
-            previousState.is_loading_to_map = previousState.is_loading_to_map === false ? true : false;
+        case 'FILE_ADDED':
+            previousState.is_loading_to_map = true;
+            return _.assign({}, previousState);
+        case 'CATEGORIES_LOADED_TO_MAP':
+            previousState.is_loading_to_map = false;
+            return _.assign({}, previousState);
+        case 'ADD_LAYER':
+            console.log("reducer says: " + action.value);
+            previousState.dataLayers = _.concat(previousState.dataLayers, action.value);
+            return _.assign({}, previousState);
+        case 'REMOVE_LAYER':
+            previousState.dataLayers = _.without(previousState.dataLayers, action.value);
             return _.assign({}, previousState);
     }
     return previousState;

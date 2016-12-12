@@ -8,27 +8,82 @@
   border-right: 1vw solid #565C70;
 
 }
+
+.headerText {
+  position:relative;
+  top:2vh;
+  left:5vh;
+  font-style: oblique;
+  color: #ffffff;
+  font-size: 1.5em;
+}
 .dropZone {
   position:absolute;
-  width:12vw;
+  width:13vw;
   height:15vh;
-  bottom:10%;
-  left:2.5vh;
+  bottom:0vh;
+  left:0vh;
 }
 
 .sidebar-layer {
   position: relative;
   cursor: pointer;
-  width: 5vw;
-  height: 5vh;
+  width: 15vh;
+  height: 3vh;
+  left:5vh;
+  top:8vh;
+  background-color:white;
+  margin-bottom:3vh;
+  text-align: center;
+  border-radius: 0.7vh;
+  border: 0.5vh solid black;
+
+  &.red {
+    background-color: #e5141f;
+  }
+  &.blue {
+    background-color: lightblue;
+  }
+  &.yellow {
+    background-color: yellow;
+  }
+  &.green {
+    background-color: lightgreen;
+  }
+  &.orange {
+    background-color: orange;
+  }
+  &.purple {
+    background-color: rgb(171, 119, 234);
+    //color: white;
+  }
+  &.pink {
+    background-color: pink;
+  }
 
 
   &.active {
-
+    border: 0.6vh solid #faeece;
   }
 
 }
 
+.checkboxClass {
+  position: relative;
+  cursor: pointer;
+  left: 2vh;
+  top: 8vh;
+}
+
+.buffer_div {
+  position: relative;
+  cursor: pointer;
+  left: 20.1vh;
+  top: 0vh;
+  background-color:white;
+  height: 2vh;
+  width: 2vh;
+}
 
 /* React Filepicker Example CSS */
 

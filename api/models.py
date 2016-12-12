@@ -52,6 +52,7 @@ def __unicode__(self):
 
 class GeometryModel(models.Model):
     name = models.CharField(max_length=50)
+    category = models.CharField(max_length=50, null=True)
     geom = models.GeometryField()
     geom_type = models.CharField(max_length=50)
     def __str__(self):

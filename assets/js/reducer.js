@@ -4,5 +4,5 @@ import sidebarReducer from "./sidebar/sidebar-reducer";
 
 export default combineReducers({
     map: mapReducer,
-    // SideBar: sidebarReducer
-})
+    sidebar: sidebarReducer
+});

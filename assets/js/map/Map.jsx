@@ -3,30 +3,20 @@ import L from 'leaflet';
 import selectProps from './map-select-props.js';
 import { connect } from 'react-redux';
 import Spinner from '../spinner.jsx';
-import Store from '../store.js'
-require('leaflet-ajax')
-require('leaflet-spin')
+require('leaflet-ajax');
+require('leaflet-spin');
 require('../../sass/map.scss');
 require('leaflet/dist/leaflet.css');
-require('jquery');
 const path = require('path');
-// const EventEmitter = require('events');
-// const sideBarDropZone = require('./sidebar/sidebar-dropzone');
-
-var myStyle = {
-    "weight": 1,
-    "opacity": 1,
-};
+const assert = require('assert');
+const _ = require('lodash');
 
 var map;
-let myLayer;
-var basepath = path.dirname(path.dirname(path.dirname(document.currentScript.src)));
-
 
 var Map = React.createClass({
     propTypes: {
-        upload_status: React.PropTypes.string.isRequired,
-        latestGeoJsonURL: React.PropTypes.string.isRequired,
+        is_uploading: React.PropTypes.bool.isRequired,
+        dataLayers: React.PropTypes.arrayOf(React.PropTypes.object),
         is_loading_to_map: React.PropTypes.bool.isRequired
     },
     mapOptions: {
@@ -55,69 +45,76 @@ var Map = React.createClass({
     },
 
     componentDidUpdate: function(prevProps, prevState) {
-        if(this.props.upload_status == 'uploadedSuccessfully' && (prevProps.upload_status != this.props.upload_status)) {
-            console.log("one does not simply load the layers correctly");
-            // this.loadGeoJSONFeature(this.props.latestGeoJsonURL);
-            this.getLayers(this.props.latestGeoJsonURL);
+        console.log(this.props.dataLayers);
+        console.log(this.props.dataLayers.length);
+        var layers_to_add = _.difference(prevProps.dataLayers, this.props.dataLayers);
+        var layers_to_remove = _.difference(prevProps.dataLayers, this.props.dataLayers);
+        for (let dataLayer of this.props.dataLayers) {
+            if (!map.hasLayer(dataLayer)) {
+                this.loadLayerToMap(dataLayer);
+            }
         }
+        // if(layers_to_add.length > -1) {
+        //     for (let dataLayer of layers_to_add) {
+        //         if(!map.hasLayer(dataLayer)) {
+        //             this.loadLayerToMap(dataLayer);
+        //         }
+        //     }
+        // }
+        if(layers_to_remove.length > -1) {
+            for (let dataLayer of layers_to_remove) {
+                if(map.hasLayer(dataLayer)) {
+                    this.hideLayerFromMap(dataLayer);
+                }
+            }
+        }
+
     },
 
-    loadGeoJSONFeature: function(url) {
-      var geojsonModelLayer = new L.GeoJSON.AJAX(url, {
-        style: myStyle,
-        onEachFeature:function(feature, layer) {
-                  layer.bindPopup(feature.properties.name.toString());
-        },
-        pointToLayer: function pointToLayer(feature, latlng) {
-            return L.circleMarker(latlng, {
-                "radius": 3,
-            });
-        },
-      });
-      console.log("waiting");
-      geojsonModelLayer.addTo(map);
-      // geojsonModelLayer.on('dataLoadComplete', function(e){
-      //     console.log('datacomplete');
-      //     geojsonModelLayer.addTo(map);
-      //     console.log(geojsonModelLayer)
-      //     console.log('should be loaded');
-      // })
+    // componentWillUpdate: function(nextProps, nextState) {
+    //     // console.log(this.props.dataLayers);
+    //     // console.log(this.props.dataLayers.length);
+    //     var layers_to_add = _.difference(nextProps.dataLayers, this.props.dataLayers);
+    //     var layers_to_remove = _.difference(this.props.dataLayers, nextProps.dataLayers);
+    //     for (let dataLayer of nextProps.dataLayers) {
+    //         if (!map.hasLayer(dataLayer)) {
+    //             this.loadLayerToMap(dataLayer);
+    //         }
+    //     }
+    //     if(layers_to_remove.length > -1) {
+    //         for (let dataLayer of layers_to_remove) {
+    //             if(map.hasLayer(dataLayer)) {
+    //                 this.hideLayerFromMap(dataLayer);
+    //             }
+    //         }
+    //     }
+    //
+    // },
+
+
+
+    loadLayerToMap: function(layer) {
+        console.log("loading layer");
+        // var url = 'getCategoryLayer/'.concat(layer);
+        // this.getCategoryLayer(url);
+        layer.addTo(map);
     },
 
-    getLayers: function(url) {
-        return $.getJSON(url, {
-        }).done(function(data) {
-            console.log(data);
-            var all_layers = L.geoJson(data, {
-                onEachFeature: function(feature, layer) {
-                          layer.bindPopup(feature.properties.name.toString());
-                },
-                style: myStyle,
-                pointToLayer: function pointToLayer(feature, latlng) {
-                    return L.circleMarker(latlng, {
-                        "radius": 3,
-                    });
-                },
-            });
-            console.log("waiting");
-            all_layers.addTo(map);
-            Store.dispatch({
-              type: "START_STOP_LOAD_MAP"
-            });
-            // var match = all_layers.eachLayer(function(layer) {
-            //     layer_id = layer.feature.id + "-" + layer.feature.properties.model;
-            //     layer.feature.properties.layer_id = layer_id,
-            //     leaflet_id_mapping[layer_id] = layer._leaflet_id;
-            // });
-        });
+    hideLayerFromMap: function(layer) {
+        console.log("hiding layer: " + layer);
+        map.removeLayer(layer);
     },
 
     onMapClick: function() {
       //
     },
     onButtonClick: function(event) {
-      console.log('clicked button');
-      this.getLayers(this.props.latestGeoJsonURL);
+        console.log('clicked button');
+        this.forceUpdate();
+    },
+
+    shouldSpinnerSpin: function() {
+
     },
 
 

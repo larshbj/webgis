@@ -1,4 +1,4 @@
 import * as Redux from "redux";
-import reducer from "./reducer";
+import rootReducer from "./reducer";
 
-export default Redux.createStore(reducer);
+export default Redux.createStore(rootReducer);

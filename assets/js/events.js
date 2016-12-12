@@ -9,9 +9,7 @@
 //       geojsonModelLayer.addTo(map);
 //   }
 // }
-
-
-//  function map_init_basic (map, options) {
-//      var geojsonModelLayer = new L.GeoJSON.AJAX("{% url 'load_layers' %}");
-//      geojsonModelLayer.addTo(map);
-//  }
+//
+// var eventManager {
+//
+// }
