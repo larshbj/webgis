@@ -16,12 +16,15 @@ from django.contrib.gis.geos import MultiPoint, MultiLineString, MultiPolygon, G
 from .models import WorldBorders, GeometryModel, PolygonModel, PointModel, LineModel
 from .forms import UploadFileForm
 
+from django.contrib.auth.decorators import login_required
+
 class MainPageView(TemplateView):
     template_name = 'index.html'
 
 def worldborders_view(request):
     worldborders_as_geojson = serialize('geojson', WorldBorders.objects.all())
     return HttpResponse(worldborders_as_geojson, content_type='json')
+
 
 def getCategories(request):
     queryset = GeometryModel.objects.values_list('category', flat=True).distinct()
@@ -168,7 +171,7 @@ def handle_shapefile(filename, path):
         models_to_save.append(GeometryModel(name = name, category = category, geom=geom_geos, geom_type = geomtype))
     GeometryModel.objects.bulk_create(models_to_save,100)
 
-
+@login_required
 def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)

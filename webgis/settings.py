@@ -24,6 +24,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -33,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'api',
-    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -66,9 +66,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'webgis.wsgi.application'
 
+# LOGIN_REDIRECT_URL = '/'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+
+# import dj_database_url
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
+
 
 DATABASES = {
 'default': {
@@ -125,9 +132,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, ''),
 )
 
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'assets/bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-    }
-}
+# WEBPACK_LOADER = {
+#     'DEFAULT': {
+#         'BUNDLE_DIR_NAME': 'assets/bundles/',
+#         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+#     }
+# }
