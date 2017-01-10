@@ -152,11 +152,7 @@ def create_intersection(request):
             #     'category': 'Intersection' + '_'.join(['%s']*len(data['layer_names'])) % tuple(data['layer_names']),
             #     'featureCollection': featureCollection
             # }
-            try:
-                cursor.execute(sql_insert, data)
-            except:
-                print "some problem occured"
-            print "2"
+            cursor.execute(sql_insert, data)
             insert_data = []
             features = []
             for row in cursor.fetchall():
