@@ -50,22 +50,23 @@ def __str__(self):
 def __unicode__(self):
     return self.name
 
-class GeometryModel(models.Model):
+class LarshbjGeoModel(models.Model):
     name = models.CharField(max_length=50)
     category = models.CharField(max_length=50, null=True)
+    user_id = models.IntegerField()
     geom = models.GeometryField()
     geom_type = models.CharField(max_length=50)
     def __str__(self):
         return self.name
 
-class PolygonModel(models.Model):
-    name = models.CharField(max_length=50)
-    geom = models.MultiPolygonField(srid=4326, blank=True, null=True)
-
-class PointModel(models.Model):
-    name = models.CharField(max_length=50)
-    geom = models.MultiPointField(srid=4326, blank=True, null=True)
-
-class LineModel(models.Model):
-    name = models.CharField(max_length=50)
-    geom = models.MultiLineStringField(srid=4326, blank=True, null=True)
+# class PolygonModel(models.Model):
+#     name = models.CharField(max_length=50)
+#     geom = models.MultiPolygonField(srid=4326, blank=True, null=True)
+#
+# class PointModel(models.Model):
+#     name = models.CharField(max_length=50)
+#     geom = models.MultiPointField(srid=4326, blank=True, null=True)
+#
+# class LineModel(models.Model):
+#     name = models.CharField(max_length=50)
+#     geom = models.MultiLineStringField(srid=4326, blank=True, null=True)

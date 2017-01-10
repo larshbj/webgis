@@ -1,5 +1,4 @@
 import React from 'react';
-import * as Actions from './sidebar-actions';
 import L from 'leaflet';
 import * as Constants from '../constants';
 const _ = require('lodash');
@@ -45,7 +44,7 @@ export default React.createClass({
                     layerData: this.dataLayer
                 });
                 console.log(this.dataLayer._leaflet_id);
-                Actions.addLayerToMap(this);
+                sidebarActions.addLayerToMap(this);
                 layerFunctions.saveFeatureColors(this.dataLayer);
         }.bind(this));
     },
@@ -55,7 +54,7 @@ export default React.createClass({
     },
 
     componentWillUnmount: function() {
-        Actions.removeLayerFromMap(this);
+        sidebarActions.removeLayerFromMap(this);
     },
 
     getClassName: function(layerName, color) {
@@ -67,10 +66,9 @@ export default React.createClass({
         this.setState({
             active: (this.state.active === false ? true : false)
         });
+        sidebarActions.sendActiveLayerChange(this);
         console.log(["Layer", layer, !this.state.active].join(" "));
-        console.log(this.dataLayer);
         if(!this.state.active) {
-            console.log("hei");
             layerFunctions.selectAllFeatures(this.dataLayer);
         } else {
             layerFunctions.deSelectAllFeatures(this.dataLayer);
@@ -118,40 +116,17 @@ export default React.createClass({
         });
     },
 
-    createBuffer: function() {
-        $.ajax({
-            url: "/create_buffer/",
-            type: "POST",
-            data : {
-                'buffer_distance': 100,
-                'layer_ids': JSON.stringify(layerFunctions.getLayerIDs(this.dataLayer)),
-                'category': this.props.layerName,
-            },
-
-            success: function(data) {
-                var result = JSON.parse(data);
-                var category = result['category'];
-                var featureCollection = result['featureCollection'];
-                console.log(category);
-                this.getLayer();
-                sidebarActions.sendAddSidebarLayer(category);
-            }.bind(this),
-
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(xhr.responseText);
-            }
-        });
-    },
+    // createBuffer: function() {
+    //     layerFunctions.createBuffer(this);
+    // },
 
     handleCheckboxClick: function() {
           this.setState({
               hidden: (this.state.hidden === false ? true : false)
           });
           if(!this.state.hidden) {
-              console.log("checkbox says remove");
               sidebarActions.removeLayerFromMap(this);
           } else {
-              console.log("checkbox says add");
               sidebarActions.addLayerToMap(this);
           }
     },
@@ -159,21 +134,22 @@ export default React.createClass({
 
     render: function() {
         return (
-            <span>
+            <div className="sidebarLayerContainer">
                 <input type="checkbox"
                        className="checkboxClass"
                        defaultChecked={!this.state.hidden}
-                       onClick={this.handleCheckboxClick}>
+                       onClick={this.handleCheckboxClick.bind(this)}>
                 </input>
                 <div className={this.getClassName(this.props.layerName, this.props.color)}
                     onClick={this.handleLayerClick.bind(this, this.props.layerName)}
                     onTouchEnd={this.handleLayerClick.bind(this, this.props.layerName)}>
-                    {this.props.layerName}
+                    <div className="layerName">{this.props.layerName}</div>
                 </div>
-                <div className="buffer_div"
-                    onClick={this.createBuffer}>
-                </div>
-            </span>
+            </div>
         );
     }
 });
+
+// <div className="buffer_div"
+//     onClick={this.createBuffer}>
+// </div>

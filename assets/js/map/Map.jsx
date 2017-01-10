@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Spinner from '../spinner.jsx';
 require('leaflet-ajax');
 require('leaflet-spin');
-require('../../sass/map.scss');
 require('leaflet/dist/leaflet.css');
 const path = require('path');
 const assert = require('assert');
@@ -108,10 +107,6 @@ var Map = React.createClass({
     onMapClick: function() {
       //
     },
-    onButtonClick: function(event) {
-        console.log('clicked button');
-        this.forceUpdate();
-    },
 
     shouldSpinnerSpin: function() {
 
@@ -120,14 +115,11 @@ var Map = React.createClass({
 
     render: function() {
         return (
-          <div>
+          <div className="mapWindow">
             <div className="mapClass" id="mapClass">
             </div>
             <Spinner
               status={this.props.is_loading_to_map} />
-            <div className="testButton"
-              onClick={this.onButtonClick.bind(this)}>
-            </div>
           </div>
         )
     }

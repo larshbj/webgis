@@ -1,0 +1,247 @@
+//SIDEBAR
+.sidebar {
+  position:absolute;
+  top:0px;
+  float:left;
+  width:13vw;
+  height:100%;
+  background: #373a47;
+  border-right: 0.5vw solid #565C70;
+}
+
+//SIDEBAR HEADER
+.headerContainer {
+  position: relative;
+  background-color: #242630;
+  top:0px;
+  width: 100%;
+  height: 10%;
+  border-bottom: 1px solid black;
+}
+
+.headerText {
+  position:relative;
+  margin: auto;
+  text-align: center;
+  top:2vh;
+  // left:5vh;
+  font-style: oblique;
+  color: #ffffff;
+  font-size: 1.5em;
+}
+
+.userProfileButton {
+  position: absolute;
+  top:0;
+  left:0;
+  background-color: lightgrey;
+  padding: 0.5vh;
+  border-bottom-right-radius:5px;
+  cursor: pointer;
+
+  .userProfile-image {
+    width: 2vh;
+    height: 2vh;
+  }
+
+}
+
+//SIDEBAR LAYER
+.sidebarLayersContainer {
+  position: relative;
+  margin-top:5%;
+  margin-bottom:5%;
+  height:50%;
+  overflow: auto;
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.sidebarlayerContainer {
+    position:relative;
+    width:100%;
+    // margin-left:2.5%;
+    // margin-right:2.5%;
+    height:10%;
+    display:block;
+    margin-bottom:0vh;
+    // border-top: 1px solid #242630;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.sidebar-layer {
+  position: relative;
+  cursor: pointer;
+  top: 20%;
+  left: 10%;
+  width: 60%;
+  height: 1.5rem;
+  margin-left:0.2vw;
+  margin-right:0.2vw;
+  background-color:#242630;
+  border-radius: 0.5vh;
+  border: 0.3vh solid black;
+  display:inline-block;
+
+  &.red {
+    border:0.3vh solid #e5141f;
+  }
+  &.blue {
+    border:0.3vh solid lightblue;
+  }
+  &.yellow {
+    border:0.3vh solid yellow;
+  }
+  &.green {
+    border:0.3vh solid lightgreen;
+  }
+  &.orange {
+    border:0.3vh solid orange;
+  }
+  &.purple {
+    border:0.3vh solid rgb(171, 119, 234);
+    //color: white;
+  }
+  &.pink {
+    border:0.3vh solid pink;
+  }
+
+  &.active {
+    border: 0.6vh solid #faeece;
+  }
+}
+
+.layerName {
+  color:white;
+  font-size:10px;
+  top: 0;
+  // height:10px;
+  // line-height:10px;
+  // white-space: nowrap;
+  margin:0 auto;
+  text-align: center;
+
+  // display:inline-block;
+}
+
+.checkboxClass {
+  position: relative;
+  top:25%;
+  cursor: pointer;
+  left: 5%;
+  display:inline-block;
+  // top: 8vh;
+}
+
+.buffer_div {
+  display:inline-block;
+  cursor: pointer;
+  background-color:white;
+  height: 2vh;
+  width: 2vh;
+  display:inline-block;
+}
+
+// GIS OPERATIONS
+
+.gisOperationsContainer {
+  position: relative;
+  top: 5%;
+  width:90%;
+  padding-left:2.5%;
+  padding-right:2.5%;
+  // margin-left:2.5%;
+  // margin-right:2.5%;
+  // margin: 2.5%;
+  height: 10%;
+  display: block;
+  // background-color: #666875;
+  // border-radius:5px;
+
+}
+
+.gis {
+  top:25%;
+  height: 60%;
+  width: 20%;
+  display: inline-block;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  // background-color: white;
+  cursor:pointer;
+
+  &.Buffer {
+  }
+
+  &.Union {
+  }
+
+  &.Intersect {
+  }
+
+  &.Difference {
+  }
+
+}
+
+.gis:hover ~ .tooltip {
+    visibility: visible;
+}
+
+.tooltip {
+    position: relative;
+    top: 0%;
+    left: 25%;
+    // visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 5px;
+
+    z-index: 1;
+}
+
+
+
+// DROPZONE
+
+.dropZoneContainer {
+  position:absolute;
+  width:100%;
+  // height:20%;
+  left:0vh;
+  bottom:0px;
+}
+
+
+.filepicker.dropzone {
+    position: relative;
+    bottom:0px;
+    margin: 0 auto;
+    width:100%;
+    background-color:rgba(255, 255, 255, 0.2);
+    border-radius:5px;
+    border: 0.15vw dotted grey;
+}
+
+.dz-default {
+  color:rgba(255,255,255,0.7);
+}
+
+
+.filepicker.dropzone .dz-preview {
+    background: none;
+    border-radius: 5px;
+}

@@ -8,4 +8,7 @@ urlpatterns = [
     url(r'^get_categories/', views.getCategories, name="get_categories"),
     url(r'^getCategoryLayer/(?P<category>\w+)/$', views.getCategoryLayer),
     url(r'^create_buffer/', views.create_buffer),
+    url(r'^create_union/', views.create_union),
+    url(r'^create_intersection/', views.create_intersection),
+    url(r'^create_difference/', views.create_difference),
 ]

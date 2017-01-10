@@ -64,3 +64,10 @@ export function sendAddSidebarLayer(data) {
         value: data
     });
 }
+
+export function sendActiveLayerChange(layer) {
+    Store.dispatch({
+        type: "LAYER_ACTIVE_CHANGE",
+        value: layer
+    })
+}

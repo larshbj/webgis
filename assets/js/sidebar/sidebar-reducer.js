@@ -21,7 +21,14 @@ export default function (previousState, action) {
         case 'STOP_LOAD_CATEGORIES':
             previousState.incoming_upload = false;
             return _.assign({}, previousState);
+        case 'LAYER_ACTIVE_CHANGE':
+            if(previousState.active_layers.includes(action.value)){
+                previousState.active_layers = _.without(previousState.active_layers, action.value);
+            } else {
+                previousState.active_layers = _.concat(previousState.active_layers, action.value);
+            }
+            return _.assign({}, previousState);
+
     }
     return previousState;
 };
-

@@ -2,7 +2,6 @@ var React = require('react');
 import DropzoneComponent from 'react-dropzone-component';
 import Cookies from 'js-cookie';
 import * as sidebarActions from './sidebar-actions.js';
-require('../../sass/sidebar.scss');
 require('dropzone/dist/min/dropzone.min.css');
 require('leaflet-ajax')
 const Map = require('../map/Map.jsx');
@@ -64,7 +63,7 @@ export default class SideBarDropZone extends React.Component {
             error: this.uploadNotSuccessful.bind(this),
         };
         return (
-          <div className="dropzoneClass">
+          <div className="dropZoneContainer">
             <DropzoneComponent config={config} eventHandlers={eventHandlers} djsConfig={djsConfig} />
         </div>
     );

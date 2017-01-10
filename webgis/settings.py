@@ -24,7 +24,6 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -33,8 +32,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'django.contrib.sites',
     'api',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -45,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'webgis.urls'
 
@@ -66,7 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'webgis.wsgi.application'
 
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 
 # Database
@@ -127,14 +133,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    # os.path.join(BASE_DIR, 'node_modules'), # We do this so that django's collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
-    # os.path.join(BASE_DIR, 'assets'),
-    os.path.join(BASE_DIR, ''),
+    os.path.join(BASE_DIR, 'assets'),
 )
 
-# WEBPACK_LOADER = {
-#     'DEFAULT': {
-#         'BUNDLE_DIR_NAME': 'assets/bundles/',
-#         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-#     }
-# }
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend"
+)
