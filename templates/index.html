@@ -4,7 +4,7 @@
   <body>
      {% if user.is_authenticated %}
     <div id="react-app"></div>
-    <script src="http://localhost:3000/assets/bundles/app.bundle.js"></script>
+    <script src="../assets/bundles/bundle.js"></script>
       {% else %}
         {% include 'accounts/login.html' %}
       {% endif %}

@@ -14,8 +14,6 @@ SECRET_KEY = '0$$n%!+s(ek+1y24nh5#pq-5ke8xn2tbc36i_our1-3l9k0!^y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 # if __name__ == "__main__":
 #     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "webgis.settings")
 #
@@ -78,23 +76,11 @@ LOGIN_REDIRECT_URL = '/'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-# import dj_database_url
-# db_from_env = dj_database_url.config()
-# DATABASES['default'].update(db_from_env)
+import dj_database_url
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'webinar',
-        'USER': 'webinar',
-        'PASSWORD': 'webinar',
-        'HOST': '46.101.4.130',
-        'PORT': '',
-        'OPTIONS': {
-          'options': '-c search_path=larshbj_webgis,public'
-        }
-    },
-}
+DATABASES = {'default': dj_database_url.config()}
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+DATABASES['default']['OPTIONS'] = {'options': '-c search_path=larshbj,public'}
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -132,11 +118,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+# ALLOWED_HOSTS = ['reactive-gis.herokuapp.com/', 'localhost']
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`

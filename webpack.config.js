@@ -38,8 +38,11 @@ module.exports = {
         //     context: path.join(__dirname, "assets"),
         //     manifest: require("./dll/vendor-manifest.json")
         // }),
-        new BundleTracker({filename: './webpack-stats.json'}),
-        // new webpack.HotModuleReplacementPlugin(),
+        // new webpack.DefinePlugin({
+        //   'process.env.NODE_ENV': JSON.stringify('production')
+        // }),
+        // new BundleTracker({filename: './webpack-stats.json'}),
+        new webpack.optimize.DedupePlugin(),
         new webpack.NoErrorsPlugin(), // don't reload if there is an error
         new webpack.optimize.UglifyJsPlugin({
             compress: {
