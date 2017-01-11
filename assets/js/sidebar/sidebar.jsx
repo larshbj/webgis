@@ -13,6 +13,7 @@ import interceptionIcon from '../../../media/glyphicons-596-paired.png'
 import differenceIcon from '../../../media/glyphicons-192-minus-sign.png';
 import userProfileSrc from '../../../media/glyphicons-4-user.png';
 import Modal from 'react-awesome-modal';
+import AlertContainer from 'react-alert';
 import nodePath from 'path';
 
 // var ModalClass = React.createClass({
@@ -53,6 +54,7 @@ import nodePath from 'path';
 //       </Modal>)
 //   }
 // })
+var alertOptions;
 
 var SideBarClass = React.createClass({
     displayName: "SideBar",
@@ -75,13 +77,14 @@ var SideBarClass = React.createClass({
     },
 
     getCategories: function(url) {
-        sidebarActions.sendStartSpinner();
+        // sidebarActions.sendStartSpinner();
         return $.getJSON(url, {
         }).done(function(data) {
             if(typeof data === 'undefined') {
               sidebarActions.sendStopSpinner();
-              console.log('You tried to load categories, but there are no data yet');;
+              msg.info('Drop a .zip-file in the drop zone to upload');
             } else {
+              msg.success('Layers are loading');
               sidebarActions.sendLoadCategories(data);
             }
         });
@@ -100,9 +103,9 @@ var SideBarClass = React.createClass({
     createBuffer: function() {
         let act_layers = this.props.active_layers;
         if(_.isEmpty(act_layers)) {
-            console.log("Please select a layer.");
+            msg.error('Please select a layer');
         } else if(act_layers.length > 1) {
-            console.log("Please select one layer only.")
+            msg.error('Please select one layers only');
         } else {
           layerFunctions.createBuffer(act_layers);
         }
@@ -110,8 +113,12 @@ var SideBarClass = React.createClass({
 
     createUnion: function() {
         let act_layers = this.props.active_layers;
-        if(_.isEmpty(act_layers || act_layers.length == 1 || act_layers.length > 2)) {
-            console.log("Please select two layers only.");
+        if(_.isEmpty(act_layers)) {
+            msg.error('No layers selected');
+        } else if (act_layers.length == 1) {
+            msg.error('Please select two layers');
+        } else if (act_layers.length > 2) {
+            msg.error('Please select two layers only');
         } else {
           layerFunctions.createUnion(act_layers);
         }
@@ -119,18 +126,25 @@ var SideBarClass = React.createClass({
 
     createIntersection: function() {
       let act_layers = this.props.active_layers;
-      if(_.isEmpty(act_layers || act_layers.length == 1 || act_layers.length > 2)) {
-          console.log("Please select two layers only.");
+      if(_.isEmpty(act_layers)) {
+          msg.error('No layers selected');
+      } else if (act_layers.length == 1) {
+          msg.error('Please select two layers');
+      } else if (act_layers.length > 2) {
+          msg.error('Please select two layers only');
       } else {
-        console.log("sup");
         layerFunctions.createIntersection(act_layers);
       }
     },
 
     createDifference: function() {
       let act_layers = this.props.active_layers;
-      if(_.isEmpty(act_layers || act_layers.length == 1 || act_layers.length > 2)) {
-          console.log("Please select at least two layers.");
+      if(_.isEmpty(act_layers)) {
+          msg.error('No layers selected');
+      } else if (act_layers.length == 1) {
+          msg.error('Please select two layers');
+      } else if (act_layers.length > 2) {
+          msg.error('Please select two layers only');
       } else {
         layerFunctions.createDifference(act_layers);
       }
@@ -147,10 +161,12 @@ var SideBarClass = React.createClass({
                 this.createUnion();
                 return;
             case 'Intersect':
-                this.createIntersection();
+                msg.info('Unfortunately, this operation is deactivated for the time being.');
+                // this.createIntersection();
                 return;
             case 'Difference':
-                this.createDifference();
+                msg.info('Unfortunately, this operation is deactivated for the time being.');
+                // this.createDifference();
                 return;
         }
     },
@@ -192,6 +208,14 @@ var SideBarClass = React.createClass({
       // window.open("" + window.location.pathname + "/accounts/logout");
       // let path = nodePath.
       window.location.href='/accounts/logout';
+    },
+
+    alertOptions: {
+        offset: 14,
+        position: 'bottom left',
+        theme: 'dark',
+        time: 5000,
+        transition: 'scale'
     },
 
     render: function() {
@@ -242,7 +266,8 @@ var SideBarClass = React.createClass({
                   <button className="signOut" onClick={() => {this.goToSignOut()}}>Sign out</button>
                   <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
               </div>
-            </Modal>)
+            </Modal>
+            <AlertContainer ref={(a) => global.msg = a} {...this.alertOptions} />
           </section>
         );
     }

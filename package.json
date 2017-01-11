@@ -4,7 +4,6 @@
   "description": "gis in web-browser using geodjango, DRF and react",
   "main": "index.js",
   "dependencies": {
-    "immutability-helper": "^2.0.0",
     "jquery": "^3.1.1",
     "js-cookie": "^2.1.3",
     "leaflet": "^1.0.2",
@@ -12,9 +11,9 @@
     "leaflet-spin": "^0.1.1",
     "leaflet.markercluster": "^1.0.0",
     "lodash": "^4.15.0",
-    "random-color": "^1.0.1",
     "randomcolor": "^0.4.4",
     "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
     "react-alert": "^1.0.14",
     "react-awesome-modal": "^2.0.1",
     "react-dom": "^15.3.2",
@@ -26,8 +25,7 @@
     "react-spin": "^0.6.2",
     "redux": "^3.6.0",
     "redux-logger": "^2.6.1",
-    "spin": "0.0.1",
-    "wolfy87-eventemitter": "^5.1.0"
+    "spin": "0.0.1"
   },
   "devDependencies": {
     "babel": "^6.5.2",
