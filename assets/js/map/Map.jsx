@@ -3,6 +3,8 @@ import L from 'leaflet';
 import selectProps from './map-select-props.js';
 import { connect } from 'react-redux';
 import Spinner from '../spinner.jsx';
+import sidebarActions from '../sidebar/sidebar-actions.js';
+import Store from '../store.js';
 require('leaflet-ajax');
 require('leaflet-spin');
 require('leaflet/dist/leaflet.css');
@@ -66,6 +68,12 @@ var Map = React.createClass({
                     this.hideLayerFromMap(dataLayer);
                 }
             }
+        }
+        if(layers_to_add.length < 1 && this.props.dataLayers.length > 0) {
+          // sidebarActions.sendStopSpinner();
+          Store.dispatch({
+            type: "SPINNER_STOP"
+          });
         }
 
     },

@@ -1,11 +1,12 @@
 <html>
   <head>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
-    <script type="text/javascript">
-     </script>
+     {% if user.is_authenticated %}
     <div id="react-app"></div>
     <script src="http://localhost:3000/assets/bundles/app.bundle.js"></script>
+      {% else %}
+        {% include 'accounts/login.html' %}
+      {% endif %}
   </body>
 </html>

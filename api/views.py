@@ -21,6 +21,9 @@ from .forms import UploadFileForm
 class MainPageView(TemplateView):
     template_name = 'index.html'
 
+# def loginView(request):
+#     return redirect('')
+
 def worldborders_view(request):
     worldborders_as_geojson = serialize('geojson', WorldBorders.objects.all())
     return HttpResponse(worldborders_as_geojson, content_type='json')

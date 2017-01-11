@@ -33,6 +33,7 @@ export default React.createClass({
     },
 
     getCategoryLayer: function(url) {
+        sidebarActions.sendStartSpinner();
         return $.getJSON(url, {
         }).done(function(data) {
                 this.dataLayer = L.geoJson(data, {

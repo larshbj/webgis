@@ -6,6 +6,7 @@ export function addLayerToMap(layer) {
     console.log("ADDING LAYER");
     // console.log(typeof dataLayer);
     // var dataLayer = layer.props.layerName;
+    // sendStartSpinner();
     Store.dispatch({
         type: "ADD_LAYER",
         value: dataLayer
@@ -21,9 +22,15 @@ export function removeLayerFromMap(layer) {
     })
 }
 
-export function sendFileAdded() {
+export function sendStartSpinner() {
     Store.dispatch({
-        type: "FILE_ADDED"
+        type: "SPINNER_START"
+    });
+}
+
+export function sendStopSpinner() {
+    Store.dispatch({
+        type: "SPINNER_STOP"
     });
 }
 

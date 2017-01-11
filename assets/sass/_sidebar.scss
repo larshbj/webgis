@@ -195,7 +195,7 @@
 
 }
 
-.gis:hover ~ .tooltip {
+.gis:hover .tooltip {
     visibility: visible;
 }
 
@@ -203,7 +203,7 @@
     position: relative;
     top: 0%;
     left: 25%;
-    // visibility: hidden;
+    visibility: hidden;
     background-color: black;
     color: #fff;
     text-align: center;

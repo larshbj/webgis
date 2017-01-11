@@ -82,16 +82,18 @@ LOGIN_REDIRECT_URL = '/'
 # db_from_env = dj_database_url.config()
 # DATABASES['default'].update(db_from_env)
 
-
 DATABASES = {
-'default': {
-     'ENGINE': 'django.contrib.gis.db.backends.postgis',
-     'NAME': 'geodjango',
-     'USER': 'larshbj',
-     'PASSWORD': 'pw',
-     'HOST': 'localhost',
-     'PORT': '5432',
-    }
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'webinar',
+        'USER': 'webinar',
+        'PASSWORD': 'webinar',
+        'HOST': '46.101.4.130',
+        'PORT': '',
+        'OPTIONS': {
+          'options': '-c search_path=larshbj_webgis,public'
+        }
+    },
 }
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

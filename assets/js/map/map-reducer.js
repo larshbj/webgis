@@ -15,10 +15,10 @@ export default function (previousState, action) {
         case 'FINISHED_UPLOAD_TO_DB':
             previousState.is_uploading = false;
             return _.assign({}, previousState);
-        case 'FILE_ADDED':
+        case 'SPINNER_START':
             previousState.is_loading_to_map = true;
             return _.assign({}, previousState);
-        case 'CATEGORIES_LOADED_TO_MAP':
+        case 'SPINNER_STOP':
             previousState.is_loading_to_map = false;
             return _.assign({}, previousState);
         case 'ADD_LAYER':

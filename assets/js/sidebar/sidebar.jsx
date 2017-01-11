@@ -13,6 +13,7 @@ import interceptionIcon from '../../../media/glyphicons-596-paired.png'
 import differenceIcon from '../../../media/glyphicons-192-minus-sign.png';
 import userProfileSrc from '../../../media/glyphicons-4-user.png';
 import Modal from 'react-awesome-modal';
+import nodePath from 'path';
 
 // var ModalClass = React.createClass({
 //   displayName: "Modal",
@@ -74,9 +75,11 @@ var SideBarClass = React.createClass({
     },
 
     getCategories: function(url) {
+        sidebarActions.sendStartSpinner();
         return $.getJSON(url, {
         }).done(function(data) {
             if(typeof data === 'undefined') {
+              sidebarActions.sendStopSpinner();
               console.log('You tried to load categories, but there are no data yet');;
             } else {
               sidebarActions.sendLoadCategories(data);
@@ -136,9 +139,11 @@ var SideBarClass = React.createClass({
     doGisOperation: function(operation) {
         switch(operation) {
             case 'Buffer':
+                sidebarActions.sendStartSpinner();
                 this.createBuffer();
                 return;
             case 'Union':
+                sidebarActions.sendStartSpinner();
                 this.createUnion();
                 return;
             case 'Intersect':
@@ -185,6 +190,8 @@ var SideBarClass = React.createClass({
 
     goToSignOut: function() {
       // window.open("" + window.location.pathname + "/accounts/logout");
+      // let path = nodePath.
+      window.location.href='/accounts/logout';
     },
 
     render: function() {

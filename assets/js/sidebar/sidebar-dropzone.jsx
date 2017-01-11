@@ -29,7 +29,7 @@ export default class SideBarDropZone extends React.Component {
 
     handleFileAdded(file) {
         console.log(file);
-        sidebarActions.sendFileAdded();
+        sidebarActions.sendStartSpinner();
     }
 
     uploadedFileSuccessfully(file, response) {
@@ -48,6 +48,7 @@ export default class SideBarDropZone extends React.Component {
     uploadNotSuccessful() {
         console.log("upload unsuccesful");
         sidebarActions.sendFileIsFinished();
+        sidebarActions.sendStopSpinner();
     }
 
 
