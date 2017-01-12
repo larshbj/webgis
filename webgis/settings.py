@@ -12,7 +12,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0$$n%!+s(ek+1y24nh5#pq-5ke8xn2tbc36i_our1-3l9k0!^y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 # if __name__ == "__main__":
 #     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "webgis.settings")
@@ -104,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -118,7 +116,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# ALLOWED_HOSTS = ['reactive-gis.herokuapp.com/', 'localhost']
+ALLOWED_HOSTS = ['reactive-gis.herokuapp.com/', 'localhost']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
