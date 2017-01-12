@@ -4,7 +4,7 @@ channels: !!python/tuple
 dependencies:
 - curl=7.49.0=vc9_0
 - django=1.10.3=py27_0
-- gdal=2.1.0=py27_0
+- gdal=1.11.2=py27_0
 - geos=3.5.0=vc9_0
 - hdf4=4.2.12=vc9_0
 - hdf5=1.8.15.1=vc9_4
@@ -29,4 +29,3 @@ dependencies:
 - xerces-c=3.1.4=vc9_0
 - zlib=1.2.8=vc9_3
 prefix: C:\Users\LarsHenrik\Miniconda2\envs\webgis-env
-
