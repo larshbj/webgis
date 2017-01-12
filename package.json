@@ -12,11 +12,11 @@
     "leaflet.markercluster": "^1.0.0",
     "lodash": "^4.15.0",
     "randomcolor": "^0.4.4",
-    "react": "^15.3.2",
-    "react-addons-css-transition-group": "^15.3.2",
+    "react": "15.3.2",
+    "react-addons-css-transition-group": "15.3.2",
     "react-alert": "^1.0.14",
     "react-awesome-modal": "^2.0.1",
-    "react-dom": "^15.3.2",
+    "react-dom": "15.3.2",
     "react-dropzone": "^3.7.3",
     "react-dropzone-component": "^1.2.0",
     "react-redux": "^4.4.6",
@@ -24,7 +24,7 @@
     "react-router-redux": "^4.0.7",
     "react-spin": "^0.6.2",
     "redux": "^3.6.0",
-    "redux-logger": "^2.6.1",
+    "redux-logger": "2.6.1",
     "spin": "0.0.1"
   },
   "devDependencies": {
