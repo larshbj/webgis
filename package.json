@@ -54,7 +54,7 @@
     "test": "webpack",
     "start": "webpack-dev-server --port 3000 --host 0.0.0.0 --progress --colors --inline --hot",
     "build": "webpack --config webpack.prod.config.js",
-    "post-install": "npm run build",
+    "post-install": "npm run build"
   },
   "repository": {
     "type": "git",
