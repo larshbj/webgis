@@ -39,7 +39,6 @@
     "css-loader": "^0.26.0",
     "file-loader": "^0.9.0",
     "node-sass": "^3.13.0",
-    "react": "^15.3.2",
     "react-hot-loader": "^1.3.0",
     "redux-devtools": "^3.3.1",
     "sass-loader": "^4.0.2",
@@ -54,12 +53,8 @@
   "scripts": {
     "test": "webpack",
     "start": "webpack-dev-server --port 3000 --host 0.0.0.0 --progress --colors --inline --hot",
-    "build:webpack": "webpack --config webpack.prod.config.js --progress --colors",
-    "clean": "rimraf dist",
-    "build:dll": "webpack --config=webpack.dll.js",
-    "build": "npm run clean && npm run build:dll && npm run build:webpack",
-    "watch": "npm run build:dll && npm run start",
-    "watch:webpack": "webpack --config webpack.config.js --progress --colors --inline --hot --watch"
+    "build": "webpack --config webpack.prod.config.js --progress --colors",
+    "post-install": "npm run build"
   },
   "repository": {
     "type": "git",
