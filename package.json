@@ -57,7 +57,8 @@
     "postinstall": "webpack --config webpack.prod.config.js"
   },
   "engines": {
-    "node": "4.3.1"
+    "node": "4.3.1",
+    "npm": "3.10.9"
   },
   "repository": {
     "type": "git",
