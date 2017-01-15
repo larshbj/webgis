@@ -54,7 +54,7 @@
     "test": "webpack",
     "start": "webpack-dev-server --port 3000 --host 0.0.0.0 --progress --colors --inline --hot",
     "build": "webpack --config webpack.prod.config.js",
-    "postinstall": "npm run build"
+    "postinstall": "webpack --config webpack.prod.config.js"
   },
   "engines": {
     "node": "4.3.1"
