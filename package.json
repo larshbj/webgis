@@ -1,5 +1,5 @@
 {
-  "name": "webgis",
+  "name": "reactive-gis",
   "version": "1.0.0",
   "description": "gis in web-browser using geodjango, DRF and react",
   "main": "index.jsx",
