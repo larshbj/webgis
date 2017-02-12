@@ -1,10 +1,12 @@
 <html>
   <head>
+
   </head>
   <body>
+    {% load static %}
      {% if user.is_authenticated %}
     <div id="react-app"></div>
-    <script src="../staticfiles/bundles/app.bundle.js"></script>
+    <script src="{% static "app.bundle.js" %}"></script>
       {% else %}
         {% include 'accounts/login.html' %}
       {% endif %}

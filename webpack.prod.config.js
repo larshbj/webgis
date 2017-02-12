@@ -2,16 +2,14 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  devtool: 'source-map',
+  // devtool: 'source-map',
 
-  entry: [
-      './assets/js/index.js'
-  ],
+  entry: './assets/js/index.js',
 
   output: {
-    path: path.resolve(__dirname, './assets/bundles'),
-    filename: 'bundle.js',
-    publicPath: '/assets/bundles'
+    path: path.join(__dirname, './public/'),
+    filename: 'app.bundle.js',
+    publicPath: '/public/'
   },
 
   plugins: [

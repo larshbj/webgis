@@ -77,9 +77,23 @@ LOGIN_REDIRECT_URL = '/'
 
 import dj_database_url
 
-DATABASES = {'default': dj_database_url.config()}
-DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
-DATABASES['default']['OPTIONS'] = {'options': '-c search_path=larshbj,public'}
+# DATABASES = {'default': dj_database_url.config()}
+# DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+# DATABASES['default']['OPTIONS'] = {'options': '-c search_path=larshbj,public'}
+
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+         'NAME': 'webinar',
+         'USER': 'webinar',
+         'PASSWORD': 'webinar',
+         'HOST': '46.101.4.130',
+         'PORT': '',
+         'OPTIONS': {
+           'options': '-c search_path=larshbj_webgis,public'
+         }
+     },
+}
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -103,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DEBUG = False
+DEBUG = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -118,13 +132,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-ALLOWED_HOSTS = ['reactive-gis.herokuapp.com/', 'localhost']
+# ALLOWED_HOSTS = ['reactive-gis.herokuapp.com/', 'localhost']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'assets'),
+    os.path.join(BASE_DIR, 'public'),
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
