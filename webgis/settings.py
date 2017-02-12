@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DEBUG = True
+# DEBUG = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -132,7 +132,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# ALLOWED_HOSTS = ['reactive-gis.herokuapp.com/', 'localhost']
+ALLOWED_HOSTS = ['reactive-gis.herokuapp.com', 'localhost']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
