@@ -1,0 +1,39 @@
+# packages in environment at C:\Users\LarsHenrik\Miniconda2\envs\reactive-gis-env:
+#
+curl                      7.49.0                    vc9_0  [vc9]
+dj-database-url           0.4.1                     <pip>
+django                    1.10.3                   py27_0  
+Django                    1.10.3                    <pip>
+django-allauth            0.30.0                    <pip>
+gdal                      2.1.0                    py27_0  
+geos                      3.5.0                     vc9_0  [vc9]
+gunicorn                  19.6.0                    <pip>
+hdf4                      4.2.12                    vc9_0  [vc9]
+hdf5                      1.8.15.1                  vc9_4  [vc9]
+jpeg                      8d                        vc9_2  [vc9]
+kealib                    1.4.6                     vc9_0  [vc9]
+libgdal                   2.1.0                     vc9_0  [vc9]
+libnetcdf                 4.3.3.1                   vc9_4  [vc9]
+libpq                     9.5.4                     vc9_0  [vc9]
+libtiff                   4.0.6                     vc9_2  [vc9]
+mkl                       11.3.3                        1  
+numpy                     1.11.2                   py27_0  
+oauthlib                  2.0.1                     <pip>
+openssl                   1.0.2j                    vc9_0  [vc9]
+pip                       9.0.0                     <pip>
+pip                       8.1.2                    py27_0  
+pip                       9.0.1                     <pip>
+postgresql                9.5.4                     vc9_0  [vc9]
+proj4                     4.9.2                     vc9_0  [vc9]
+psycopg2                  2.6.2                    py27_0  
+python                    2.7.12                        0  
+python-openid             2.2.5                     <pip>
+requests                  2.12.4                    <pip>
+requests-oauthlib         0.7.0                     <pip>
+setuptools                27.2.0                   py27_1  
+vc                        9                             0  
+vs2008_runtime            9.00.30729.1                  2  
+wheel                     0.29.0                   py27_0  
+whitenoise                3.2.3                     <pip>
+xerces-c                  3.1.4                     vc9_0  [vc9]
+zlib                      1.2.8                     vc9_3  [vc9]
