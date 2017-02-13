@@ -77,9 +77,7 @@ LOGIN_REDIRECT_URL = '/'
 
 import dj_database_url
 
-DATABASE_URL='postgresql://webinar:webinar@46.101.4.130:5432/webinar'
-
-DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
+DATABASES = {'default': dj_database_url.config()}
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 DATABASES['default']['OPTIONS'] = {'options': '-c search_path=larshbj,public'}
 
