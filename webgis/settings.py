@@ -77,23 +77,23 @@ LOGIN_REDIRECT_URL = '/'
 
 import dj_database_url
 
-DATABASES = {'default': dj_database_url.config()}
-DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
-DATABASES['default']['OPTIONS'] = {'options': '-c search_path=larshbj,public'}
+# DATABASES = {'default': dj_database_url.config()}
+# DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+# DATABASES['default']['OPTIONS'] = {'options': '-c search_path=larshbj,public'}
 
-# DATABASES = {
-#      'default': {
-#          'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#          'NAME': 'webinar',
-#          'USER': 'webinar',
-#          'PASSWORD': 'webinar',
-#          'HOST': '46.101.4.130',
-#          'PORT': '',
-#          'OPTIONS': {
-#            'options': '-c search_path=larshbj_webgis,public'
-#          }
-#      },
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+         'NAME': 'webinar',
+         'USER': 'webinar',
+         'PASSWORD': 'webinar',
+         'HOST': '46.101.4.130',
+         'PORT': '',
+         'OPTIONS': {
+           'options': '-c search_path=larshbj_webgis,public'
+         }
+     },
+}
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
